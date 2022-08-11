@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import VuexPersistence from 'vuex-persist'
-
-const vuexLocal = new VuexPersistence({
-  storage: window.localStorage,
-})
 
 Vue.use(Vuex)
 
@@ -36,9 +31,9 @@ export default new Vuex.Store({
     },
 
     setValor(state, payload) {
-      let value = !payload ? 0 : parseFloat(payload)
+      let value = !payload ? 0 : payload
       if (value < 0) value *= -1
-      state.valor = value 
+      state.valor = parseFloat(value)
     },
 
     setGorjeta(state, payload) {
@@ -53,7 +48,5 @@ export default new Vuex.Store({
       let index = state.moedas.findIndex(m => m.moeda === payload.moeda)
       state.moedas[index].quote = payload.quote
     },
-  },
-
-  plugins: [vuexLocal.plugin],
+  }
 })
