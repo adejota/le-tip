@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
-    "axios": "^0.27.2",
+    "apollo-boost": "^0.4.9",
     "core-js": "^3.8.3",
+    "graphql": "^15.8.0",
     "vue": "^2.6.14",
+    "vue-apollo": "^3.1.0",
     "vue-router": "^3.5.1",
     "vuetify": "^2.6.0",
     "vuex": "^3.6.2",

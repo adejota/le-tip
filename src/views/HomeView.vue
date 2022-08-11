@@ -59,16 +59,5 @@ export default {
       page: 1,
     }
   },
-
-  async created() {
-    try {
-      const res = await this.$axios.get('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL')
-      if (res) {
-        console.log(res.data)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
 }
 </script>

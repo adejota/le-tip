@@ -29,7 +29,7 @@
 
         <div class="d-flex align-center">
           <span class="mr-2">Valor</span>
-          <span class="mr-2">{{ getSinalMoeda }}</span>
+          <span class="mr-2">{{ getCurrentMoeda.sinal }}</span>
 
           <v-text-field
             type="number"
@@ -87,7 +87,7 @@ export default {
   name: 'InputPanel',
 
   computed: {
-    ...mapGetters(['getMoeda', 'getSinalMoeda', 'getValor', 'getGorjeta', 'getPessoas'])
+    ...mapGetters(['getMoeda', 'getCurrentMoeda', 'getValor', 'getGorjeta', 'getPessoas'])
   },
 
   methods: {

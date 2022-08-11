@@ -4,27 +4,27 @@
       <v-col cols="12">
         <div>
           <p class="ma-0">Conta</p>
-          <span>{{ `${getSinalMoeda} ${getValor.toFixed(2)}` }}</span>
+          <span>{{ `${getCurrentMoeda.sinal} ${getValor.toFixed(2)}` }}</span>
         </div>
 
         <div>
           <p class="ma-0">Gorjeta</p>
-          <span>{{ `${getSinalMoeda} ${getCalcGorjeta.toFixed(2)}` }}</span>
+          <span>{{ `${getCurrentMoeda.sinal} ${calcGorjeta.toFixed(2)}` }}</span>
         </div>
 
         <div>
           <p class="ma-0">Total</p>
-          <span>{{ `${getSinalMoeda} ${getCalcTotal.toFixed(2)}` }}</span>
+          <span>{{ `${getCurrentMoeda.sinal} ${calcTotal.toFixed(2)}` }}</span>
         </div>
 
         <div>
           <p class="ma-0">por Pessoa</p>
-          <span>{{ `${getSinalMoeda} ${getCalcPorPessoa.toFixed(2)}` }}</span>
+          <span>{{ `${getCurrentMoeda.sinal} ${calcPorPessoa.toFixed(2)}` }}</span>
         </div>
 
         <div>
           <p class="ma-0">em R$</p>
-          <span>{{ `R$ ${getCalcGorjeta.toFixed(2)}` }}</span>
+          <span>{{ `R$ ${calcEmReais.toFixed(2)}` }}</span>
         </div>
       </v-col>
     </v-row>
@@ -38,7 +38,23 @@ export default {
   name: 'ResultPanel',
 
   computed: {
-    ...mapGetters(['getSinalMoeda', 'getValor', 'getCalcGorjeta', 'getCalcTotal', 'getCalcPorPessoa'])
+    ...mapGetters(['getCurrentMoeda', 'getValor', 'getGorjeta', 'getPessoas']),
+
+    calcGorjeta() {
+      return this.getValor * (this.getGorjeta / 100)
+    },
+
+    calcTotal() {
+      return this.getValor + this.calcGorjeta
+    },
+
+    calcPorPessoa() {
+      return this.calcTotal / this.getPessoas
+    },
+
+    calcEmReais() {
+      return this.calcPorPessoa * this.getCurrentMoeda.quote
+    }
   },
 }
 </script>

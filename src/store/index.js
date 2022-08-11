@@ -12,23 +12,22 @@ export default new Vuex.Store({
   state: {
     moeda: 0,
     moedas: [
-      { id: 0, moeda: 'EUR', sinal: '€'},
-      { id: 1, moeda: 'USD', sinal: '$'},
+      { id: 0, moeda: 'EUR', sinal: '€', quote: 0 },
+      { id: 1, moeda: 'USD', sinal: '$', quote: 0 },
     ],
     valor: 0,
     gorjeta: 10,
     pessoas: 2,
+    eurQuote: 0,
+    usdQuote: 0,
   },
 
   getters: {
     getMoeda: state => state.moeda,
-    getSinalMoeda: state => state.moedas.find(m => m.id === state.moeda).sinal,
+    getCurrentMoeda: state => state.moedas.find(m => m.id === state.moeda),
     getValor: state => state.valor,
     getGorjeta: state => state.gorjeta,
     getPessoas: state => state.pessoas,
-    getCalcGorjeta: state => state.valor * (state.gorjeta / 100),
-    getCalcTotal: (state, getters) => state.valor + getters.getCalcGorjeta,
-    getCalcPorPessoa: (state, getters) => getters.getCalcTotal / state.pessoas,
   },
 
   mutations: {
@@ -48,6 +47,11 @@ export default new Vuex.Store({
 
     setPessoas(state, payload) {
       state.pessoas = payload
+    },
+
+    setQuote(state, payload) {
+      let index = state.moedas.findIndex(m => m.moeda === payload.moeda)
+      state.moedas[index].quote = payload.quote
     },
   },
 
