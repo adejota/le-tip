@@ -32,6 +32,7 @@
           <span class="text-h6 mr-2 primary--text">{{ getCurrentMoeda.sinal }}</span>
 
           <v-text-field
+            type="tel"
             v-model="valor"
             class="text-h6 pa-0 ma-0"
             hide-details
