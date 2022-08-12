@@ -32,7 +32,6 @@ export default new Vuex.Store({
 
     setValor(state, payload) {
       let value = !payload ? 0 : payload
-      if (value < 0) value *= -1
       state.valor = parseFloat(value)
     },
 

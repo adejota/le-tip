@@ -32,12 +32,12 @@
           <span class="text-h6 mr-2 primary--text">{{ getCurrentMoeda.sinal }}</span>
 
           <v-text-field
-            type="number"
-            :value="getValor ? getValor : null"
-            @input="setValor($event)"
+            v-model="valor"
             class="text-h6 pa-0 ma-0"
             hide-details
             placeholder="0.00"
+            v-mask="currencyMask"
+            @input="setValor(valor)"
           />
         </div>
 
@@ -91,8 +91,19 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'InputPanel',
 
+  data() {
+    return {
+      valor: ''
+    }
+  },
+
   computed: {
-    ...mapGetters(['getMoeda', 'getCurrentMoeda', 'getValor', 'getGorjeta', 'getPessoas'])
+    ...mapGetters(['getMoeda', 'getCurrentMoeda', 'getValor', 'getGorjeta', 'getPessoas']),
+
+    currencyMask() {
+      let length = this.valor.length
+      return length > 4 ? `${'#'.repeat(length - 3)}.##` : '#.##'
+    }
   },
 
   methods: {

@@ -4,8 +4,10 @@ import router from './router'
 import store from './store'
 import apolloProvider from './plugins/apollo'
 import vuetify from './plugins/vuetify'
+import VueMask from 'v-mask'
 import 'animate.css'
 
+Vue.use(VueMask)
 Vue.config.productionTip = false
 
 new Vue({

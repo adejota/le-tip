@@ -7,14 +7,14 @@
     </v-row>
 
     <v-row>
-      <v-col v-if="!isMobile || page === 1"
+      <v-col v-show="!isMobile || page === 1"
         cols="12" sm="12" md="12" lg="6" xl="6"
         class="animate__animated animate__slideInLeft animate__faster"
       >
         <input-panel />
       </v-col>
 
-      <v-col v-if="!isMobile || (isMobile && page === 2)"
+      <v-col v-show="!isMobile || (isMobile && page === 2)"
         sm="12" md="12" lg="6" xl="6"
         class="animate__animated animate__slideInRight animate__faster"
       >
