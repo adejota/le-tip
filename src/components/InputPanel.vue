@@ -31,7 +31,7 @@
           <span class="mr-4">Valor</span>
           <span class="text-h6 mr-2 primary--text">{{ getCurrentMoeda.sinal }}</span>
 
-          <v-text-field ref="valor"
+          <v-text-field
             type="number"
             :value="getValor ? getValor : null"
             @input="setValor($event)"
@@ -93,10 +93,6 @@ export default {
 
   computed: {
     ...mapGetters(['getMoeda', 'getCurrentMoeda', 'getValor', 'getGorjeta', 'getPessoas'])
-  },
-
-  mounted() {
-    this.$refs.valor.focus()
   },
 
   methods: {
