@@ -22,14 +22,6 @@ describe('HomeView', () => {
   beforeEach(() => {
     router = new VueRouter()
     vuetify = new Vuetify()
-
-    const conta = 73.23
-    const gorjeta = 13
-    const pessoas = 10
-    
-    store.commit('setValor', conta)
-    store.commit('setGorjeta', gorjeta)
-    store.commit('setPessoas', pessoas)
   })
 
   afterEach(() => {
@@ -74,7 +66,14 @@ describe('HomeView', () => {
   })
 
   it('should do the "gorjeta" calculation correctly', async () => {
+    const conta = 73.23
+    const gorjeta = 13
+    const pessoas = 10
     const gorgetaCalculada = 9.52
+    
+    store.commit('setValor', conta)
+    store.commit('setGorjeta', gorjeta)
+    store.commit('setPessoas', pessoas)
     
     const wrapper = mountHomeView()
     const calcGorjeta  = wrapper.findComponent(ResultPanel).vm.calcGorjeta
@@ -82,7 +81,14 @@ describe('HomeView', () => {
   })
 
   it('should do the "total" calculation correctly', async () => {
+    const conta = 73.23
+    const gorjeta = 13
+    const pessoas = 10
     const total = 82.75
+    
+    store.commit('setValor', conta)
+    store.commit('setGorjeta', gorjeta)
+    store.commit('setPessoas', pessoas)
     
     const wrapper = mountHomeView()
     const calcTotal  = wrapper.findComponent(ResultPanel).vm.calcTotal
@@ -90,7 +96,14 @@ describe('HomeView', () => {
   })
 
   it('should do the "porPessoa" calculation correctly', async () => {
+    const conta = 73.23
+    const gorjeta = 13
+    const pessoas = 10
     const porPessoa = 8.28
+    
+    store.commit('setValor', conta)
+    store.commit('setGorjeta', gorjeta)
+    store.commit('setPessoas', pessoas)
 
     const wrapper = mountHomeView()
     const calcPorPessoa  = wrapper.findComponent(ResultPanel).vm.calcPorPessoa
