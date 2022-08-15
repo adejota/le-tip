@@ -4,7 +4,7 @@
       <v-col cols="12">
         <div>
           <p class="ma-0 mb-2">Conta</p>
-          <span class="text-h6 mr-2 primary--text">{{ getCurrentMoeda.sinal }}</span>
+          <span data-testid="current-moeda-sinal" class="text-h6 mr-2 primary--text">{{ getCurrentMoeda.sinal }}</span>
           <span class="text-h6">{{ getValor.toFixed(2) }}</span>
         </div>
 
@@ -26,7 +26,7 @@
           <span class="text-h6">{{ calcPorPessoa.toFixed(2) }}</span>
         </div>
 
-        <div class="mt-8">
+        <div data-testid="calc-em-reais-container" class="mt-8">
           <p class="ma-0 mb-2">em R$</p>
           <span class="text-h6 mr-2 primary--text">R$</span>
           <span class="text-h6">{{ isNaN(calcEmReais) ? calcEmReais : calcEmReais.toFixed(2) }}</span>
@@ -46,15 +46,15 @@ export default {
     ...mapGetters(['getCurrentMoeda', 'getValor', 'getGorjeta', 'getPessoas']),
 
     calcGorjeta() {
-      return this.getValor * (this.getGorjeta / 100)
+      return this.roundNumber(this.getValor * (this.getGorjeta / 100))
     },
 
     calcTotal() {
-      return this.getValor + this.calcGorjeta
+      return this.roundNumber(this.getValor + this.calcGorjeta)
     },
 
     calcPorPessoa() {
-      return this.calcTotal / this.getPessoas
+      return this.roundNumber(this.calcTotal / this.getPessoas)
     },
 
     calcEmReais() {
@@ -62,8 +62,14 @@ export default {
         return '. . .'
       }
 
-      return this.calcPorPessoa * this.getCurrentMoeda.quote
+      return this.roundNumber(this.calcPorPessoa * this.getCurrentMoeda.quote)
     }
   },
+
+  methods: {
+    roundNumber(num) {
+      return Math.round((num + Number.EPSILON) * 100) / 100
+    }
+  }
 }
 </script>

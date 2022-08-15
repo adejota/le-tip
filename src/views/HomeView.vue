@@ -22,7 +22,8 @@
       </v-col>
     </v-row>
 
-    <v-btn v-if="isMobile"
+    <v-btn data-testid="change-page-btn"
+      v-if="isMobile"
       @click="page === 1 ? page = 2 : page = 1"
       large
       icon
@@ -37,15 +38,37 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import HeaderLogo from '../components/HeaderLogo'
 import InputPanel from '../components/InputPanel'
 import ResultPanel from '../components/ResultPanel'
+import gql from 'graphql-tag'
 
 export default {
   name: 'HomeView',
 
   components: {
     HeaderLogo, InputPanel, ResultPanel
+  },
+
+  apollo: {
+    latest: gql`query {
+      latest(baseCurrency: "EUR", quoteCurrencies: ["BRL", "USD"]) {
+        quoteCurrency
+        quote
+      }
+    }`,
+  },
+
+  watch: {
+    latest(value) {
+      if (value) {
+        const eurQuote = value.find(i => i.quoteCurrency === 'BRL').quote
+        const usdQuote = eurQuote / value.find(i => i.quoteCurrency === 'USD').quote
+        this.setQuote({ moeda: 'EUR', quote: eurQuote })
+        this.setQuote({ moeda: 'USD', quote: usdQuote })
+      }
+    }
   },
 
   computed: {
@@ -59,5 +82,9 @@ export default {
       page: 1,
     }
   },
+
+  methods: {
+    ...mapMutations(['setQuote']),
+  }
 }
 </script>
