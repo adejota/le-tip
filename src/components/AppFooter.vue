@@ -3,7 +3,11 @@
         class="text-caption pa-2"
     >
         <span>
-            Desenvolvido por
+            Por
+            <a class="primary--text text-decoration-none" href="https://github.com/adejota" target="_blank" rel="noopener noreferrer">
+                adejota
+            </a>
+            |
             <a class="primary--text text-decoration-none" href="https://www.convenia.com.br/" target="_blank" rel="noopener noreferrer">
                 Convenia
             </a>
