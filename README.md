@@ -1,7 +1,5 @@
 # Le Tip
 
-Project developed as part of the technical evaluation for the role of front end developer at [Convenia](https://www.convenia.com.br/).
-
 ## 🚀 Getting started
 
 These instructions will allow you to get a copy of the project running on your local machine.
